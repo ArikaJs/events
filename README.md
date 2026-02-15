@@ -5,7 +5,7 @@
 
 It provides a clean, expressive way to decouple application logic using events and listeners — enabling scalable, maintainable, and testable architectures.
 
-This package is inspired by Laravel Events, but implemented natively for Node.js and TypeScript.
+This package is part of the ArikaJS framework and provides a robust event system for Node.js and TypeScript applications.
 
 ---
 
