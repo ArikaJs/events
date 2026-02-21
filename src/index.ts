@@ -10,8 +10,8 @@ export class Event {
         return this.instance.dispatch(event);
     }
 
-    public static listen(event: any, listener: any) {
-        return this.instance.listen(event, listener);
+    public static listen(event: any, listener: any, priority: number = 0) {
+        return this.instance.listen(event, listener, priority);
     }
 
     public static forget(event: any) {
@@ -20,6 +20,14 @@ export class Event {
 
     public static fake() {
         return this.instance.fake();
+    }
+
+    public static assertDispatched(event: any, callback?: (event: any) => boolean) {
+        return (this.instance as any).assertDispatched(event, callback);
+    }
+
+    public static subscribe(subscriber: any) {
+        return this.instance.subscribe(subscriber);
     }
 
     // Facade helper to set a custom manager

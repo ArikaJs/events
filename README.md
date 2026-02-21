@@ -110,6 +110,25 @@ export default {
 
 ## 📚 API Reference
 
+### 🔢 Listener Priorities
+
+You can control the order in which listeners execute by passing a priority (higher numbers run first).
+
+```ts
+Event.listen(OrderPlaced, ProcessPayment, 100);
+Event.listen(OrderPlaced, SendEmail, 0); // Runs after payment
+```
+
+### 🃏 Wildcard Events
+
+Listen to a group of events using the `*` wildcard.
+
+```ts
+Event.listen('user.*', (event) => {
+    // Handled for 'user.login', 'user.registered', etc.
+});
+```
+
 ### `Event.dispatch(event)`
 
 Dispatch an event instance.
@@ -132,6 +151,24 @@ Remove all listeners for an event.
 
 ```ts
 Event.forget(OrderPlaced);
+```
+
+### 🔁 Event Subscribers
+
+Subscribers are classes that can subscribe to multiple events from within a single class.
+
+```ts
+class UserEventSubscriber {
+    subscribe(events) {
+        events.listen('user.login', this.onUserLogin);
+        events.listen('user.logout', this.onUserLogout);
+    }
+    
+    onUserLogin(event) { /* ... */ }
+    onUserLogout(event) { /* ... */ }
+}
+
+Event.subscribe(UserEventSubscriber);
 ```
 
 ---
@@ -171,22 +208,29 @@ events/
 
 ## 🧪 Testing
 
-Events and listeners can be faked or mocked for tests:
+The Arika event system provides powerful testing helpers to mock event dispatching.
 
 ```ts
-Event.fake();
-Event.assertDispatched(UserRegistered);
-```
+it('dispatches the order event', async () => {
+    Event.fake();
 
-(Test helpers planned.)
+    await someBusinessLogic();
+
+    Event.assertDispatched(OrderPlaced);
+    // Use a callback for custom assertions
+    Event.assertDispatched(OrderPlaced, (event) => {
+        return event.id === 123;
+    });
+});
+```
 
 ---
 
 ## 🛣 Roadmap
 
-- [ ] Event subscribers
-- [ ] Wildcard events
-- [ ] Listener priorities
+- [x] Event subscribers
+- [x] Wildcard events
+- [x] Listener priorities
 - [ ] Event discovery
 - [ ] Event caching
 
