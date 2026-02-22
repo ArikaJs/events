@@ -34,6 +34,10 @@ export class Event {
     public static setManager(manager: EventManager) {
         this.instance = manager;
     }
+
+    public static getManager(): EventManager {
+        return this.instance;
+    }
 }
 
 export { EventManager, Listener, EventException };
