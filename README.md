@@ -173,24 +173,23 @@ Event.subscribe(UserEventSubscriber);
 
 ---
 
-## 🧠 Architecture
+## 🏗 Architecture
 
-```
+```text
 events/
 ├── src/
-│   ├── EventManager.ts     ← Central event dispatcher
-│   ├── ListenerResolver.ts ← Resolves listeners via DI
-│   ├── Dispatcher.ts       ← Executes listeners
-│   ├── Contracts/
+│   ├── Contracts
 │   │   └── Listener.ts
-│   ├── Exceptions/
+│   ├── Exceptions
 │   │   └── EventException.ts
-│   └── index.ts
+│   ├── Dispatcher.ts
+│   ├── EventManager.ts
+│   ├── index.ts
+│   └── ListenerResolver.ts
 ├── tests/
 ├── package.json
 ├── tsconfig.json
-├── README.md
-└── LICENSE
+└── README.md
 ```
 
 ---
@@ -235,25 +234,6 @@ it('dispatches the order event', async () => {
 - [ ] Event caching
 
 ---
-
-## 🏗 Architecture
-
-```text
-events/
-├── src/
-│   ├── Contracts
-│   │   └── Listener.ts
-│   ├── Exceptions
-│   │   └── EventException.ts
-│   ├── Dispatcher.ts
-│   ├── EventManager.ts
-│   ├── index.ts
-│   └── ListenerResolver.ts
-├── tests/
-├── package.json
-├── tsconfig.json
-└── README.md
-```
 
 ## 📄 License
 
