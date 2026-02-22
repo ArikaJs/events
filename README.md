@@ -236,6 +236,25 @@ it('dispatches the order event', async () => {
 
 ---
 
+## 🏗 Architecture
+
+```text
+events/
+├── src/
+│   ├── Contracts
+│   │   └── Listener.ts
+│   ├── Exceptions
+│   │   └── EventException.ts
+│   ├── Dispatcher.ts
+│   ├── EventManager.ts
+│   ├── index.ts
+│   └── ListenerResolver.ts
+├── tests/
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
 ## 📄 License
 
 `@arikajs/events` is open-source software licensed under the **MIT License**.
